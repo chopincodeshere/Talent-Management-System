@@ -1,0 +1,262 @@
+<mat-card class="container">
+  <form
+    class="form"
+    novalidate
+    [formGroup]="moreDetails"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="grid-section">
+      <div class="form-grid">
+        <div>
+          <span class="fs-6">Key Skills</span>
+          <span class="star">*</span>
+        </div>
+        <mat-form-field class="chip-list" appearance="outline">
+          <mat-chip-grid #chipGrid aria-label="Skill selection">
+            <mat-chip-row
+              *ngFor="let skill of skills"
+              (removed)="removeSkill(skill)"
+            >
+              {{ skill }}
+              <button matChipRemove [attr.aria-label]="'remove ' + skill">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            <input
+              class="autocomplete-skill-input"
+              placeholder="Your expertise"
+              #skillInput
+              [formControl]="skillCtrl"
+              [matChipInputFor]="chipGrid"
+              [matAutocomplete]="auto"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addSkill($event)"
+            />
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              (optionSelected)="selectedSkill($event)"
+            >
+              <mat-option
+                *ngFor="let skill of filteredSkills | async"
+                [value]="skill"
+              >
+                {{ skill }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-chip-grid>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-grid">
+        <div>
+          <span class="fs-6">May know skills</span>
+        </div>
+        <mat-form-field class="chip-list" appearance="outline">
+          <mat-chip-grid #chipGridMoreSkill aria-label="Skill selection">
+            <mat-chip-row
+              *ngFor="let skill of moreSkills"
+              (removed)="removeMoreSkill(skill)"
+            >
+              {{ skill }}
+              <button matChipRemove [attr.aria-label]="'remove ' + skill">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            <input
+              class="autocomplete-skill-input"
+              placeholder="Skills you may know"
+              #moreSkillInput
+              [formControl]="moreSkillCtrl"
+              [matChipInputFor]="chipGridMoreSkill"
+              [matAutocomplete]="autoMoreSkill"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addMoreSkill($event)"
+            />
+            <mat-autocomplete
+              #autoMoreSkill="matAutocomplete"
+              (optionSelected)="selectedMoreSkill($event)"
+            >
+              <mat-option
+                *ngFor="let skill of filteredMoreSkills | async"
+                [value]="skill"
+              >
+                {{ skill }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-chip-grid>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-grid">
+        <div class="field-label">
+          <span class="fs-6">Total Relevant Experience</span
+          ><span class="star">*</span>
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="totalExperience" required>
+            <mat-option disabled selected>Select...</mat-option>
+            <mat-option value="0">0 Year</mat-option>
+            <mat-option value="1">1 Year</mat-option>
+            <mat-option value="2">2 Years</mat-option>
+            <mat-option value="3">3 Years</mat-option>
+            <mat-option value="4">4 Years</mat-option>
+            <mat-option value="5">5 Years</mat-option>
+            <mat-option value="6">6 Years</mat-option>
+            <mat-option value="7">7 Years</mat-option>
+            <mat-option value="8">8 Years</mat-option>
+            <mat-option value="9">9 Years</mat-option>
+            <mat-option value="10">10 Years</mat-option>
+            <mat-option value="11">11 Years</mat-option>
+            <mat-option value="12">12 Years</mat-option>
+            <mat-option value="13">13 Years</mat-option>
+            <mat-option value="14">14 Years</mat-option>
+            <mat-option value="15">15 Years</mat-option>
+            <mat-option value="16">More</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="moreDetails.get('totalExperience')!.hasError('required')"
+            >Total Relevant Experience is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+  
+      <div class="form-grid">
+        <div class="field-label">
+          <span class="fs-6">Current CTC</span><span class="star">*</span>
+        </div>
+        <mat-form-field appearance="outline" class="custom-form-field">
+          <mat-label>Current Annual CTC (In Lakhs)</mat-label>
+          <input matInput type="text" formControlName="currentCTC" />
+          <mat-error *ngIf="moreDetails.controls.currentCTC!.errors?.pattern">
+            Only numeric values allowed up to 2 digits after decimal
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-grid">
+        <div class="field-label">
+          <span class="fs-6">Expected CTC</span>
+          <span class="star">*</span>
+        </div>
+        <mat-form-field appearance="outline" class="custom-form-field">
+          <input matInput type="text" formControlName="expectedCTC" />
+          <mat-error *ngIf="moreDetails.controls.expectedCTC!.errors?.pattern">
+            Only numeric values allowed up to 2 digits after decimal
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-grid">
+        <div class="field-label">
+          <label class="fs-6">Current Notice Period</label
+          ><span class="star">*</span>
+        </div>
+  
+        <mat-form-field appearance="outline" class="custom-form-field">
+          <mat-select formControlName="currentNoticePeriod" required>
+            <mat-option selected value="0">Immediate Joiner</mat-option>
+            <mat-option value="1">0-15 Days</mat-option>
+            <mat-option value="2">1 Month</mat-option>
+            <mat-option value="3">2 Months</mat-option>
+            <mat-option value="4">3 Months</mat-option>
+            <mat-option value="5">4 Months or more</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-grid">
+        <div class="field-label">
+          <label class="fs-6">Position Applied For</label
+          ><span class="star">*</span>
+        </div>
+  
+        <mat-form-field appearance="outline" class="custom-form-field">
+          <mat-select formControlName="job_id" required>
+            <mat-option
+              *ngFor="let job of positions; index as i"
+              [value]="job.id"
+            >
+              {{ job.jobTitle }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div></div>
+  
+      <mat-radio-group class="work-mode-radio-group" formControlName="workMode">
+        <div class="fs-6 field-label">Work mode<span class="star">*</span></div>
+  
+        <div class="radio-buttons">
+          <mat-radio-button
+            color="primary"
+            class="work-mode-radio-button"
+            value="Work from office"
+            >On site</mat-radio-button
+          >
+  
+          <mat-radio-button
+            color="primary"
+            class="work-mode-radio-button"
+            value="Work Remotely"
+            >Work remotely</mat-radio-button
+          >
+  
+          <mat-radio-button
+            color="primary"
+            class="work-mode-radio-button"
+            value="Hybrid"
+            >Hybrid</mat-radio-button
+          >
+        </div>
+      </mat-radio-group>
+  
+      <div></div>
+  
+      <mat-card class="example-result-card">
+        <mat-card-content>
+          <div class="example-label-container">
+            <label id="example-name-label" class="form-label"
+              >Communication Skills</label
+            >
+            <label class="example-value-label">{{ value }}</label>
+          </div>
+          <mat-slider
+            class="example-margin"
+            [disabled]="disabled"
+            [max]="max"
+            [min]="min"
+            [step]="step"
+            [discrete]="thumbLabel"
+            [showTickMarks]="showTicks"
+          >
+            <input
+              matSliderThumb
+              [(ngModel)]="value"
+              name="Communication Skills"
+              formControlName="communicationSkills"
+            />
+          </mat-slider>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="button-section">
+      <div style="display: flex; justify-content: center">
+        <span class="star">*</span>
+        <p class="required-fields">Required fields</p>
+      </div>
+
+      <div class="buttons">
+        <button
+          type="button"
+          mat-button
+          routerLink="/candidate-pool/add-candidate"
+        >
+          Back
+        </button>
+        <button mat-flat-button color="primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</mat-card>

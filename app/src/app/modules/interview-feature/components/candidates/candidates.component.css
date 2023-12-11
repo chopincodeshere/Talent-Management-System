@@ -1,0 +1,81 @@
+table {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  max-width: 100%;
+}
+
+.resume-icon {
+  margin-left: 0.75rem;
+  font-weight: lighter;
+}
+
+.back_button {
+  width: 90%;
+  margin: 0 4.5rem;
+  box-shadow: none;
+}
+
+.candidates-container {
+  width: 90%;
+  margin: 0 4.5rem;
+}
+
+.paginator {
+  width: 100%;
+}
+
+.round>.container,
+.stage>.container {
+  width: 100%;
+  /* This is what causes the fixed width */
+}
+
+.round>mat-form-field,
+.stage>mat-form-field {
+  width: 100%;
+  /* This will make the form fields adjust based on their container's width */
+}
+
+.round.container,
+.stage.container {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+td {
+  height: 4rem;
+  width: 10%;
+}
+
+.container {
+  display: flex;
+  height: 3.5rem;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+.no-data-found {
+  box-shadow: none;
+  margin: 0;
+  padding: 0 35rem;
+  width: 100%;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0;
+}
+
+.h0 {
+  height: 0;
+}
+
+@media(max-width: 1400px) {
+  .candidates-container {
+    max-width: 90%;
+  }
+
+  .round,
+  .stage {
+    width: 100%;
+  }
+}

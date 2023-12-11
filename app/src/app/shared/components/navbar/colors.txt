@@ -1,0 +1,50 @@
+Certainly! Here are a few more analogous colors that can give your website a professional look when combined with the primary color `#2196f3`:
+
+1. Dark Blue: `#1a5096`
+```css
+.tms-navbar {
+  background-color: #1a5096;
+  color: #ffffff;
+}
+```
+
+2. Light Blue: `#1a96b7`
+```css
+.tms-navbar {
+  background-color: #1a96b7;
+  color: #ffffff;
+}
+```
+
+3. Dark Teal: `#1a9682`
+```css
+.tms-navbar {
+  background-color: #1a9682;
+  color: #ffffff;
+}
+```
+
+4. Light Teal: `#1a96b7`
+```css
+.tms-navbar {
+  background-color: #1a96b7;
+  color: #ffffff;
+}
+```
+
+5. Dark Purple: `#581a96`
+```css
+.tms-navbar {
+  background-color: #581a96;
+  color: #ffffff;
+}
+```
+
+6. Light Purple: `#7f1a96`
+```css
+.tms-navbar {
+  background-color: #7f1a96;
+  color: #ffffff;
+}
+```
+

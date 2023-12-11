@@ -1,0 +1,47 @@
+.job-status-candidates {
+    padding: 2rem;
+}
+
+table {
+    width: 100%;
+    box-shadow: none;
+}
+
+tr.example-detail-row {
+    height: 0;
+}
+
+
+tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+}
+
+.example-element-row td {
+    border-bottom-width: 0;
+}
+
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+
+.example-element-description {
+    padding: 16px;
+}
+
+.example-element-description-attribution {
+    opacity: 0.5;
+}
+
+tr.detail-row {
+    height: 0;
+}
+
+.no-data-found {
+    box-shadow: none;
+    margin: 0 0rem;
+    width: 100%;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 0;
+}

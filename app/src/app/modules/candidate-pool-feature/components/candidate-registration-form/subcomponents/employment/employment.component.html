@@ -1,0 +1,189 @@
+<header
+  class="example-full-width d-flex justify-content-center align-items-center p-1"
+>
+  <div
+    class="example-full-width d-flex justify-content-center align-items-center"
+  >
+    <h1 class="p-0 mt-3 mx-2">Employment form</h1>
+  </div>
+  <mat-icon type="button" (click)="closeDialog()">close</mat-icon>
+</header>
+
+<mat-divider></mat-divider>
+
+<mat-tab-group [formGroup]="candidateForm">
+  <mat-tab
+    style="padding: 0.75rem"
+    formArrayName="employment"
+    *ngFor="
+      let employment of $any(candidateForm.get('employment')!).controls;
+      let i = index
+    "
+    [label]="getTabLabel(i)"
+  >
+    <form [formGroupName]="i">
+      <div class="p-3">
+        <h2>Company Name</h2>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input
+            id="{{ 'companyName' + i }}"
+            matInput
+            placeholder="Ex. Tecunique Pvt. Ltd."
+            type="text"
+            formControlName="companyName"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="p-3">
+        <h2>Designation</h2>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input
+            id="{{ 'designation' + i }}"
+            matInput
+            placeholder="Ex. Senior QA Engineer"
+            type="text"
+            formControlName="designation"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="p-3">
+        <h2>Previous CTC(Lakhs)</h2>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input
+            id="{{ 'previousCTC' + i }}"
+            matInput
+            placeholder="Ex. 12"
+            type="text"
+            [errorStateMatcher]="matcher"
+            formControlName="previousCTC"
+          />
+          <mat-error *ngIf="!isPreviousCTCValid()">
+            Please enter numeric values upto 2 digits after decimal only.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="p-3">
+        <h2>Company Address</h2>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <textarea
+            id="{{ 'location' + i }}"
+            matInput
+            placeholder="Ex. ABC street, New York"
+            formControlName="location"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="p-3">
+        <h2>Working Status</h2>
+        <mat-radio-group
+          formControlName="workingStatus"
+          (change)="onCheck($event, i)"
+        >
+          <mat-radio-button
+          *ngIf="candidateForm.value.employment.length <= 1"
+            value="Fresher"
+            color="primary"
+            (click)="disableEmploymentButton()"
+            >Fresher</mat-radio-button
+          >
+          <mat-radio-button
+            value="Working"
+            color="primary"
+            (click)="enableEmploymentButton()"
+            >Currently Working</mat-radio-button
+          >
+          <mat-radio-button
+            value=""
+            color="primary"
+            (click)="enableEmploymentButton()"
+            >None</mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
+
+      <div class="p-3" *ngIf="!isFresher(i)">
+        <div class="example-full-width">
+          <h2>Working tenure</h2>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              [matDatepicker]="startPicker"
+              placeholder="Start Date"
+              formControlName="start"
+              [max]="maxDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="startPicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+          <span
+            class="fs-4 px-3"
+            *ngIf="(!isCurrentlyWorking(i) && isNone(i)) || undefined"
+            >to</span
+          >
+          <mat-form-field
+            appearance="outline"
+            *ngIf="(!isCurrentlyWorking(i) && isNone(i)) || undefined"
+          >
+            <input
+              matInput
+              [matDatepicker]="finishPicker"
+              placeholder="Finish Date"
+              formControlName="finish"
+              [max]="maxDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="finishPicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #finishPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+
+    <div class="p-3 example-full-width d-flex justify-content-end">
+      <button
+        mat-flat-button
+        color="warn"
+        (click)="removeEmployment(i)"
+        class="button"
+       *ngIf="i > 0"
+      >
+        <mat-icon>delete</mat-icon> Delete
+      </button>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<mat-divider></mat-divider>
+
+<footer
+  class="example-full-width d-flex justify-content-end align-items-center p-1"
+>
+  <div class="p-3 example-full-width d-flex justify-content-end">
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="addEmployment()"
+      class="button"
+      [disabled]="disableEmployment"
+    >
+      Add Employment
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="submitForm()"
+      class="button"
+    >
+      Submit
+    </button>
+  </div>
+</footer>

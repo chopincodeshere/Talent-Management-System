@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans:wght@600&display=swap');
+
+.tms-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 100%;
+    height: 4.5rem;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.log:hover {
+    cursor: pointer;
+}
+
+.logo img {
+    vertical-align: middle;
+}
+
+.tms-heading {
+    padding-top: 13px;
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.tms-navbar {
+    background-color: #F1F1F1;
+    color: #2E354D;
+}
+
+
+.tms-heading {
+    margin-left: 16px;
+    font-size: 20px;
+}
+
+.menu-button {
+    color: #2E354D;
+}
+
+.custom-menu {
+    background-color: #ffffff;
+    color: #333333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item {
+    padding: 8px 16px;
+}
+
+.nav-link:hover {
+cursor: pointer;
+}
+
+.menu-item-text {
+    padding-left: 8px;
+}
+
+.menu-divider {
+    border: none;
+    border-top: 1px solid #cccccc;
+    margin: 4px 0;
+}

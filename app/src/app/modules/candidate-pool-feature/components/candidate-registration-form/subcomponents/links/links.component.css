@@ -1,0 +1,87 @@
+.links-dialog-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.links-dialog-content {
+    padding: 1rem;
+}
+
+.links-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.links-dialog-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.links-form,
+.links-form-field {
+    width: 100%;
+}
+
+.links-dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.links-dialog-button {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.links-dialog-button:hover {
+    background-color: #0056b3;
+}
+
+.links-dialog-button-secondary {
+    background-color: #6c757d;
+}
+
+.links-dialog-button-secondary:hover {
+    background-color: #4e5459;
+}
+
+.links-dialog-list {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.links-dialog-list-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.links-dialog-list-item:last-child {
+    border-bottom: none;
+}
+
+.links-dialog-list-item .mat-line {
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+.links-text {
+    margin-top: 0;
+    width: fit-content;
+}

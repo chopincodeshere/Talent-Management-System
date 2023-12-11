@@ -1,0 +1,106 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    overflow-x: hidden;
+}
+
+.cdk-overlay-container {
+    z-index: 999999 !important;
+}
+
+.valid-feedback,
+.invalid-feedback {
+    font-size: larger;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+ng-multiselect-dropdown.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.m-left-invalid {
+    margin-left: 10.8rem;
+    top: 3rem;
+    position: absolute;
+    margin-bottom: 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.flexEnd {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/* Adjust font size and line height for mobile devices */
+@media only screen and (max-width: 600px) {
+    body {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  }
+  
+  /* Make the app container and content full width on smaller screens */
+  @media only screen and (max-width: 768px) {
+    .app-container {
+      width: 100%;
+    }
+  
+    .content {
+      padding: 10px;
+    }
+  }
+  
+  /* Example responsive layout for navigation */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+  
+  .navbar-logo {
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+  .navbar-menu {
+    display: flex;
+  }
+  
+  .navbar-menu-item {
+    margin-right: 10px;
+  }
+  
+  /* Example responsive layout for a two-column section */
+  .section {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .section-column {
+    flex: 1 1 50%; /* Two columns for medium and larger screens */
+    padding: 10px;
+  }
+  
+  /* Adjust column layout for smaller screens */
+  @media only screen and (max-width: 768px) {
+    .section-column {
+      flex: 1 1 100%; /* Full width for smaller screens */
+    }
+  }

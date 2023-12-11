@@ -1,0 +1,62 @@
+<form enctype="multipart/form-data" id="resume-form">
+  <div class="form-group">
+    <div class="dragDropFile">
+      <div class="dragUpload" id="dragUpload">
+        <div class="upload-file">
+          <input
+            type="file"
+            (change)="selectFile($event)"
+            name="files"
+            class="form-control"
+            #fileInput
+            accept=".jpg,.jpeg,.png,.pdf"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="upload-file-button">
+    <input
+      type="file"
+      hidden
+      (change)="selectFile($event)"
+      name="files"
+      class="form-control"
+      #fileInput
+      accept=".jpg,.jpeg,.png,.pdf"
+    />
+    <button mat-flat-button color="primary" type="submit" (click)="fileInput.click()" class="uploadFileButton">Upload Resume</button>
+  </div>
+
+  <mat-card *ngIf="uploaded" class="resume-clear">
+    <mat-card-content>
+      <span>
+        {{ this.filename }}
+      </span>
+      <button mat-icon-button (click)="clearFile()">
+        <mat-icon aria-label="Delete" color="warn">delete</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <div *ngIf="selectedFiles && isPdfType(selectedFiles.type)" class="pdf-preview">
+    <div *ngIf="selectedFiles && isPdfType(selectedFiles.type)" class="pdf-preview">
+      <pdf-viewer [src]="pdfSrc"></pdf-viewer>
+    </div>
+  </div>
+</form>
+
+<form enctype="multipart/form-data" id="resume-form-responsive">
+  <div class="upload-file-button-responsive">
+    <input
+      type="file"
+      hidden
+      (change)="selectFile($event)"
+      name="files"
+      class="form-control"
+      #fileInput
+      accept=".jpg,.jpeg,.png,.pdf"
+    />
+    <button mat-flat-button color="primary" type="submit" (click)="fileInput.click()" class="uploadFileButton">Upload Resume</button>
+  </div>
+</form>

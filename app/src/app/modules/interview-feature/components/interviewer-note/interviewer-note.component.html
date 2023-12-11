@@ -1,0 +1,24 @@
+<header class="full-width d-flex justify-content-center align-items-center p-3">
+  <div class="full-width d-flex justify-content-center align-items-center">
+    <mat-icon>note_add</mat-icon>
+    <h1 class="p-0 mt-3 mx-2">Add note</h1>
+  </div>
+  <mat-icon type="button" (click)="closeDialog()">close</mat-icon>
+</header>
+<mat-divider></mat-divider>
+<form [formGroup]="interviewerNotes" class="full-width padding-2">
+  <h3>Additional notes</h3>
+  <mat-form-field class="full-width" appearance="outline">
+    <textarea
+      matInput
+      placeholder="Add a note"
+      formControlName="additionalNotes"
+    ></textarea>
+  </mat-form-field>
+
+  <div class="full-width position-end">
+    <button mat-raised-button color="primary" (click)="submitNote()">
+      Add note
+    </button>
+  </div>
+</form>

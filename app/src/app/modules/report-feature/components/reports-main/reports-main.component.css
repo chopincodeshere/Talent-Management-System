@@ -1,0 +1,98 @@
+.reports-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 3rem 1rem 1rem 1rem;
+}
+
+.reports-dialog-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a5096;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+    color: #f5f5f5;
+    font-size: large;
+    font-weight: bold;
+}
+
+.upload-excel {
+    display: flex;
+    justify-content: space-between;
+}
+
+.report-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-title {
+    font-size: larger;
+}
+
+.report-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.file-upload {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.upload-button {
+    display: flex;
+    align-items: center;
+}
+
+
+.upload-content {
+    display: flex;
+    align-items: center;
+}
+
+.upload-spinner {
+    margin-right: 8px;
+}
+
+.upload-label {
+    margin-left: 4px;
+}
+
+
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload span {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.custom-file-upload:hover {
+    background-color: #aaa;
+    color: #f5f5f5;
+}
+
+.file-name {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.excel-import {
+    margin-bottom: 6rem;
+}

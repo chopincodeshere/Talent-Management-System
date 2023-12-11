@@ -1,0 +1,291 @@
+<mat-progress-bar
+  *ngIf="isLoading"
+  style="position: absolute; top: 4.6rem"
+  mode="indeterminate"
+></mat-progress-bar>
+
+<div class="container">
+  <div class="container">
+    <app-search></app-search>
+  </div>
+
+  <mat-divider class="ms-2"></mat-divider>
+  <br />
+  <div class="d-flex ms-2 mt-3">
+    <button
+      type="button"
+      class="btn btn-danger btn-sm delete-btn"
+      (click)="openDeleteConfirmationDialog()"
+    >
+      <!-- (click)="confirmDelete = true" -->
+      <mat-icon style="color: white">delete</mat-icon>
+      Delete
+    </button>
+  </div>
+
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    multiTemplateDataRows
+    class="mat-elevation-z8"
+    (matSortChange)="announceSortChange($event)"
+    matSort
+  >
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef class="id-container">
+        <mat-checkbox
+          (change)="$event ? toggleAllRows() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          color="primary"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [aria-label]="checkboxLabel()"
+        >
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row" class="id-container">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          color="primary"
+          [checked]="selection.isSelected(row)"
+          [aria-label]="checkboxLabel(row)"
+        >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Sr. No. Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="Id">ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- Candidae Column -->
+    <ng-container matColumnDef="candidate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="firstName">
+        Candidate
+      </th>
+      <td mat-cell *matCellDef="let element" class="candidate-cell">
+        {{ element.firstName + " " + element.lastName }}
+
+        <div class="resume-icon" (click)="fetchResumeById(element.id)">
+          <mat-icon color="primary">description</mat-icon>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Job profile Column -->
+    <ng-container matColumnDef="jobProfile">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="jobPosition">
+        Job Profile
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.jobPosition.jobTitle }}
+      </td>
+    </ng-container>
+
+    <!-- Enrolled date Column -->
+    <ng-container matColumnDef="enrolledDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="enrolledDate">
+        Enrolled Date
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.enrolledDate }}</td>
+    </ng-container>
+
+    <!-- Source column -->
+    <ng-container matColumnDef="source">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="source">Source</th>
+      <td mat-cell *matCellDef="let element">
+        {{
+          element.source === "From a friend"
+            ? "Referred by " +
+              element.referral.referred_fname +
+              " " +
+              element.referral.referred_lname
+            : element.source
+        }}
+
+        <!-- {{element.referral.referred_fname}} -->
+      </td>
+    </ng-container>
+
+    <!-- Stage Column -->
+    <ng-container matColumnDef="stage">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="stage">Stage</th>
+      <td mat-cell *matCellDef="let element">{{ element.stage }}</td>
+    </ng-container>
+
+    <!-- Score Column -->
+    <ng-container matColumnDef="round">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="score">Round</th>
+      <td mat-cell *matCellDef="let element">{{ element.round }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="editCandidate(element)">
+          <mat-icon color="primary">edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expand">
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          aria-label="expand row"
+          (click)="
+            expandedElement = expandedElement === element ? null : element;
+            $event.stopPropagation()
+          "
+        >
+          <mat-icon *ngIf="expandedElement !== element"
+            >keyboard_arrow_down</mat-icon
+          >
+          <mat-icon *ngIf="expandedElement === element"
+            >keyboard_arrow_up</mat-icon
+          >
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="columnsToDisplayWithExpand.length"
+      >
+        <div
+          class="example-element-detail"
+          [@detailExpand]="
+            element == expandedElement ? 'expanded' : 'collapsed'
+          "
+        >
+          <div class="example-element-description scrollable">
+            <div class="d-flex list-group-item ps-2 align-items-center">
+              <h3>Email :&nbsp;&nbsp;</h3>
+              <span>{{ element.email }}</span>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="d-flex list-group-item ps-2 align-items-center">
+              <h3>Current CTC :&nbsp;&nbsp;</h3>
+              <span>{{ element.currentCTC }} Lakhs</span>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="d-flex list-group-item ps-2 align-items-center">
+              <h3>Expected CTC :&nbsp;&nbsp;</h3>
+              <span>{{ element.expectedCTC }} Lakhs</span>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="d-flex list-group-item ps-2 align-items-center">
+              <h3>Current Notice Period :&nbsp;&nbsp;</h3>
+              <span>{{ element.currentNoticePeriod }}</span>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="d-flex list-group-item ps-2 align-items-center">
+              <h3>Total Experiece :&nbsp;&nbsp;</h3>
+              <span>{{ element.totalExperience }}</span>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="list-group-item d-flex align-items-center">
+              <div class="d-flex align-items-center ps-2" style="width: 33.33%">
+                <h3>Country :&nbsp;&nbsp;</h3>
+                <span>{{ element.address.currentAddress.currentCountry }}</span>
+              </div>
+
+              <div class="vr"></div>
+
+              <div class="d-flex align-items-center ps-2" style="width: 33.33%">
+                <h3>State :&nbsp;&nbsp;</h3>
+                <span>{{ element.address.currentAddress.currentState }}</span>
+              </div>
+
+              <div class="vr"></div>
+
+              <div class="d-flex align-items-center ps-2" style="width: 33.33%">
+                <h3>City :&nbsp;&nbsp;</h3>
+                <span>{{ element.address.currentAddress.currentCity }}</span>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="d-flex list-group-item ps-2 align-items-center">
+              <h3>Education :&nbsp;&nbsp;</h3>
+              <span>{{
+                element.education.highestDegree +
+                  " in " +
+                  element.education.specialization
+              }}</span>
+            </div>
+            <mat-divider></mat-divider>
+            <div
+              class="p-2 list-group-item ps-2"
+              style="display: flex; flex-wrap: wrap; align-items: center"
+            >
+              <h3>Skills :&nbsp;&nbsp;</h3>
+              <mat-chip-listbox
+                aria-label="Skill selection"
+                *ngFor="let skill of element.skills"
+              >
+                <mat-chip> {{ skill }} </mat-chip>
+                &nbsp;&nbsp;&nbsp;
+              </mat-chip-listbox>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="d-flex list-group-item ps-2 align-items-center">
+              <h3>Work mode :&nbsp;&nbsp;</h3>
+              <span>{{ element.workMode }}</span>
+            </div>
+            <mat-divider></mat-divider>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: columnsToDisplayWithExpand"
+      [class.example-expanded-row]="expandedElement === element"
+      class="collapsed-rows"
+      (click)="$event.stopPropagation()"
+    ></tr>
+
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="detail-row"
+    ></tr>
+  </table>
+
+  <mat-card
+    class="no-data-found"
+    *ngIf="dataSource?.data?.length === 0 || dataSource?.data === null"
+  >
+    <mat-card-content class="no-data">No data found</mat-card-content>
+  </mat-card>
+
+  <mat-paginator
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [length]="length"
+    [showFirstLastButtons]="true"
+    [pageSizeOptions]="[10, 25, 50, 100]"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div>

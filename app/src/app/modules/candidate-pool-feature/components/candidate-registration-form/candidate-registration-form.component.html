@@ -1,0 +1,301 @@
+<div class="form-container">
+  <app-resume-upload></app-resume-upload>
+  <mat-card class="form">
+    <form [formGroup]="referBuddyForm" novalidate>
+      <!-- First Name -->
+      <div class="form-grid">
+        <div class="form-field">
+          <h3>First Name</h3>
+          <mat-form-field appearance="outline" class="input-field">
+            <input
+              matInput
+              placeholder="First Name"
+              formControlName="firstName"
+            />
+            <mat-error
+              *ngIf="referBuddyForm.get('firstName')!.hasError('required')"
+              >First Name is required</mat-error
+            >
+            <mat-error
+              *ngIf="referBuddyForm.get('firstName')!.hasError('pattern')"
+              >First Name should start with a capital letter</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-field">
+          <h3>Last Name</h3>
+          <mat-form-field appearance="outline" class="input-field">
+            <input
+              matInput
+              placeholder="Last Name"
+              formControlName="lastName"
+            />
+            <mat-error
+              *ngIf="referBuddyForm.get('lastName')!.hasError('required')"
+              >Last Name is required</mat-error
+            >
+            <mat-error
+              *ngIf="referBuddyForm.get('lastName')!.hasError('pattern')"
+              >Last Name should start with a capital letter</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <!-- Email -->
+        <div class="form-field">
+          <h3>Email</h3>
+          <mat-form-field appearance="outline" class="input-field">
+            <input matInput placeholder="Email" formControlName="email" />
+            <mat-error *ngIf="referBuddyForm.get('email')!.hasError('required')"
+              >Email is required</mat-error
+            >
+            <mat-error *ngIf="referBuddyForm.get('email')!.hasError('pattern')"
+              >Invalid email format</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <!-- Mobile Phone -->
+        <div class="form-field">
+          <h3>Phone</h3>
+          <mat-form-field appearance="outline" class="input-field">
+            <input matInput placeholder="Phone" formControlName="mobilePhone" />
+            <mat-error
+              *ngIf="referBuddyForm.get('mobilePhone')!.hasError('required')"
+              >Phone number is required</mat-error
+            >
+            <mat-error
+              *ngIf="referBuddyForm.get('mobilePhone')!.hasError('pattern')"
+              >Invalid phone number</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="address" formGroupName="address">
+        <div formGroupName="currentAddress" class="currentAddress">
+          <span class="mb-3 fs-6">Current Address:</span>
+
+          <h3>Country</h3>
+          <mat-form-field appearance="outline" class="input-field">
+            <input type="text" matInput formControlName="currentCountry" />
+          </mat-form-field>
+
+          <h3>State</h3>
+          <mat-form-field appearance="outline" class="input-field">
+            <input
+              type="text"
+              matInput
+              formControlName="currentState"
+              [matAutocomplete]="stateAutoComplete"
+            />
+            <mat-autocomplete
+              #stateAutoComplete="matAutocomplete"
+              (optionSelected)="onStateSelected($event)"
+            >
+              <mat-option
+                *ngFor="let state of filteredStates | async"
+                [value]="state"
+              >
+                {{ state }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <h3>City</h3>
+          <mat-form-field appearance="outline" class="input-field">
+            <input
+              type="text"
+              matInput
+              formControlName="currentCity"
+              [matAutocomplete]="cityAutoComplete"
+            />
+            <mat-autocomplete
+              #cityAutoComplete="matAutocomplete"
+              (optionSelected)="onCitySelected($event)"
+            >
+              <mat-option
+                *ngFor="let city of filteredCities | async"
+                [value]="city"
+              >
+                {{ city }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+        <div class="mat-divider">
+          <mat-divider [vertical]="true" style="height: 28rem"></mat-divider>
+        </div>
+
+        <div formGroupName="permanentAddress" class="permanentAddress">
+          <span class="mb-3 fs-6">Permanent Address:</span>
+
+          <h3>Country</h3>
+          <mat-form-field appearance="outline" class="input-field">
+            <input type="text" matInput formControlName="permanentCountry" />
+          </mat-form-field>
+
+          <h3>State</h3>
+          <mat-form-field appearance="outline" class="input-field">
+            <input
+              type="text"
+              matInput
+              formControlName="permanentState"
+              [matAutocomplete]="statePermanentAutoComplete"
+            />
+            <mat-autocomplete
+              #statePermanentAutoComplete="matAutocomplete"
+              (optionSelected)="onPermanentStateSelected($event)"
+            >
+              <mat-option
+                *ngFor="let state of filteredPermanentStates | async"
+                [value]="state"
+              >
+                {{ state }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <h3>City</h3>
+          <mat-form-field appearance="outline" class="input-field">
+            <input
+              type="text"
+              matInput
+              formControlName="permanentCity"
+              [matAutocomplete]="cityPermanentAutoComplete"
+            />
+            <mat-autocomplete
+              #cityPermanentAutoComplete="matAutocomplete"
+              (optionSelected)="onPermanentCitySelected($event)"
+            >
+              <mat-option
+                *ngFor="let city of filteredPermanentCities | async"
+                [value]="city"
+              >
+                {{ city }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Links Modal -->
+      <div class="link-modal modals">
+        <span class="fs-6">Links</span>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          (click)="openLinkDialog()"
+        >
+          <mat-icon color="primary">add</mat-icon>
+          Add Link
+        </button>
+      </div>
+
+      <!-- Employment Modal -->
+      <div class="employment-modal modals">
+        <span class="fs-6">Employment</span>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          (click)="openEmploymentDialog()"
+        >
+          <mat-icon color="primary">add</mat-icon>
+          Add Employment Details
+        </button>
+      </div>
+
+      <!-- Education Modal -->
+      <div class="education-modal modals">
+        <label class="fs-6">Education</label>
+        <span class="star">*</span>
+        <button
+          type="button"
+          color="primary"
+          mat-stroked-button
+          (click)="openEducationDialog()"
+        >
+          <mat-icon color="primary">add</mat-icon>
+          Add Education details
+        </button>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Sources -->
+      <div class="input-last">
+        <span class="fs-6">Source</span>
+        <mat-form-field appearance="outline" class="input-field-30">
+          <mat-select formControlName="source">
+            <mat-option value="">--Select--</mat-option>
+            <mat-option *ngFor="let source of sources" [value]="source">
+              {{ source }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="referBuddyForm.get('source')!.hasError('required')"
+            >Source is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <!-- Referral from someone -->
+      <div class="referral-accordian input-last">
+        <span span class="fs-6">Referral</span>
+        <mat-accordion multi formGroupName="referral">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Reffered By </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-form-field appearance="outline">
+              <mat-label>First name</mat-label>
+              <input formControlName="referred_fname" matInput />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input formControlName="referred_lname" matInput />
+            </mat-form-field>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+      <!-- Additional notes -->
+      <div class="notes">
+        <span class="fs-6">Note</span>
+        <mat-form-field appearance="outline" class="input-field">
+          <textarea
+            matInput
+            rows="3"
+            cols="5"
+            formControlName="note"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="button-section">
+        <div style="display: flex; justify-content: center">
+          <span class="star">*</span>
+          <p class="required-fields">Required fields</p>
+        </div>
+
+        <div class="buttons">
+          <button type="reset" mat-flat-button>Cancel</button>
+
+          <button mat-flat-button color="primary" (click)="onClick()">
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>

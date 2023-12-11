@@ -1,0 +1,48 @@
+<header class="full-width d-flex justify-content-center align-items-center p-3">
+  <div class="full-width d-flex justify-content-center align-items-center">
+    <mat-icon>email</mat-icon>
+    <h1 class="p-0 mt-3 mx-2">Email</h1>
+  </div>
+  <mat-icon type="button" (click)="closeDialog()">close</mat-icon>
+</header>
+<mat-divider></mat-divider>
+<form [formGroup]="emailForm" class="padding-2 full-width">
+  <h3>Receiver's Email</h3>
+  <mat-form-field class="full-width" appearance="outline">
+    <input
+      type="email"
+      matInput
+      formControlName="receiverEmail"
+      [errorStateMatcher]="matcher"
+      placeholder="Ex. pat@example.com"
+    />
+  </mat-form-field>
+
+  <h3>Subject</h3>
+  <mat-form-field class="full-width" appearance="outline">
+    <input
+      type="text"
+      matInput
+      formControlName="subject"
+      placeholder="Subject"
+    />
+  </mat-form-field>
+
+  <h3>Your message</h3>
+  <mat-form-field class="full-width" appearance="outline">
+    <textarea
+      matInput
+      formControlName="messageBody"
+      placeholder="Message body"
+    ></textarea>
+  </mat-form-field>
+
+  <h3>Attachment</h3>
+  <div class="full-width" appearance="outline">
+    <input type="file" (change)="onFileSelected($event)" multiple />
+  </div>
+
+  <div class="full-width position-end">
+    <button mat-raised-button color="primary" (click)="sendMail()">Send</button>
+  </div>
+</form>

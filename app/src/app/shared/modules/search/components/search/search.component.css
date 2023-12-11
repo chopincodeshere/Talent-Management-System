@@ -1,0 +1,159 @@
+.search-section {
+    display: flex;
+    width: 45rem;
+    align-items: center;
+}
+
+.search-field {
+    margin-top: 1.3rem;
+    width: 100%;
+}
+
+.search-button {
+    width: 8rem;
+    height: 3rem;
+    margin: 0 1rem;
+}
+
+.scrollable {
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card {
+    top: 10.5rem;
+    right: 15.3rem;
+    width: 28rem;
+    height: 30rem;
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    height: 3rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 10rem;
+    padding: 0;
+}
+
+.close-button {
+    display: flex;
+    align-items: center;
+}
+
+.salary-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.salary-section>h2 {
+    margin: 0;
+    padding: 0 1rem;
+}
+
+.salary-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    padding: 0 0.5rem;
+}
+
+.salary-input-fields {
+    margin: 0 1rem;
+}
+
+.experience-section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+}
+
+.location-section {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.cities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.rupees-symbol {
+    font-size: 1rem;
+}
+
+.custom-container {
+    margin: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-label {
+    font-size: 0.875rem;
+}
+
+.custom-chip-list {
+    margin-left: 0.5rem;
+    display: flex;
+}
+
+
+.filter-button-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.example-chip-list {
+    width: 100%;
+}
+
+div.button:hover {
+    cursor: pointer;
+}
+
+.mat-badge-content {
+    /* Add your custom styles here */
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    font-size: 12px;
+    background-color: red;
+    color: white;
+}
+
+@media(max-width: 1040px) {
+    .search-form {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

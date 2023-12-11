@@ -1,0 +1,103 @@
+.education-dialog-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.education-dialog-content {
+    padding: 1rem;
+}
+
+.education-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.education-dialog-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.education-form,
+.education-form-field {
+    width: 100%;
+}
+
+.education-dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.education-dialog-button {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.education-dialog-button:hover {
+    background-color: #0056b3;
+}
+
+.education-dialog-button-secondary {
+    background-color: #6c757d;
+}
+
+.education-dialog-button-secondary:hover {
+    background-color: #4e5459;
+}
+
+.education-dialog-list {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.education-dialog-list-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.education-dialog-list-item:last-child {
+    border-bottom: none;
+}
+
+.education-dialog-list-item .mat-line {
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+.education-text {
+    margin-top: 0;
+    width: fit-content;
+}
+
+.education-label-container {
+    display: flex;
+}
+
+.education-dialog-label {
+    width: fit-content;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.star {
+    margin: 5px;
+    font-size: 25px;
+    color: red;
+}

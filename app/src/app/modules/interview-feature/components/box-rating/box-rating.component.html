@@ -1,0 +1,16 @@
+<div class="box-rating">
+  <div
+    class="box"
+    *ngFor="let rating of ratings"
+    [ngClass]="{
+        'selected': rating <= currentRating!,
+        'disable-color-change': disableColorChange,
+      }"
+    (click)="!disableColorChange && setRating(rating)"
+    (mouseenter)="!disableColorChange && setHoverRating(rating)"
+    (mouseleave)="!disableColorChange && clearHoverRating()"
+    style="cursor: pointer;"
+  >
+    {{ rating }}
+  </div>
+</div>

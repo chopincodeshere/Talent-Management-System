@@ -1,0 +1,130 @@
+<mat-card class="route-back-card">
+  <mat-card-content class="comment-header">
+    <button (click)="routeBack()" mat-icon-button>
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Feedbacks by interviewers</h2>
+    <div></div>
+  </mat-card-content>
+</mat-card>
+<mat-card class="container-card">
+  <mat-card class="no-feedbacks" *ngIf="numberOfFeedbacks === 0"
+    ><span>No feedbacks given</span></mat-card
+  >
+  <mat-tab-group *ngIf="numberOfFeedbacks > 0">
+    <mat-tab
+      *ngFor="let feedback of candidateFeedbacks"
+      [label]="feedback.interviewer"
+    >
+      <div class="full-width p-3">
+        <div class="form-content full-width">
+          <h3>(1) Candidate Name</h3>
+          <p class="fs-5">{{ feedback.candidateName }}</p>
+        </div>
+
+        <div class="form-content full-width px-0 py-2">
+          <h3>(2) Date of interview</h3>
+          <p class="fs-5">{{ feedback.dateOfInterview }}</p>
+        </div>
+
+        <div class="form-content full-width">
+          <h3>(3) Position Applied For</h3>
+          <p class="fs-5 m-1">
+            {{ feedback.positionAppliedFor }}
+          </p>
+        </div>
+
+        <div class="container d-flex p-0">
+          <h3>(5) Educational Background</h3>
+          <div class="px-3"></div>
+
+          <app-box-rating
+            [maxRating]="10"
+            [disableColorChange]="true"
+            [rating]="feedback.educationalBackgroundRating"
+          ></app-box-rating>
+        </div>
+
+        <div class="container d-flex p-0">
+          <h3>(6) Prior Work Experience</h3>
+          <div class="px-3"></div>
+
+          <app-box-rating
+            [maxRating]="10"
+            [disableColorChange]="true"
+            [rating]="feedback.workExperienceRating"
+          ></app-box-rating>
+        </div>
+
+        <div class="container d-flex p-0">
+          <h3>(7) Technical Qualifications/Knowledge/Experience</h3>
+          <div class="px-3"></div>
+
+          <app-box-rating
+            [maxRating]="10"
+            [disableColorChange]="true"
+            [rating]="feedback.technicalSkillsRating"
+          ></app-box-rating>
+        </div>
+
+        <div class="container d-flex p-0">
+          <h3>(8) Verbal Communication Skill</h3>
+          <div class="px-3"></div>
+
+          <app-box-rating
+            [maxRating]="10"
+            [disableColorChange]="true"
+            [rating]="feedback.communicationSkillsRating"
+          ></app-box-rating>
+        </div>
+
+        <div class="container d-flex p-0">
+          <h3>(9) Candidate Interest / Gesture</h3>
+          <div class="px-3"></div>
+
+          <app-box-rating
+            [maxRating]="10"
+            [disableColorChange]="true"
+            [rating]="feedback.candidateInterestRating"
+          ></app-box-rating>
+        </div>
+
+        <div class="container d-flex p-0">
+          <h3>(10) Teambuilding/Interpersonal Skills</h3>
+          <div class="px-3"></div>
+
+          <app-box-rating
+            [maxRating]="10"
+            [disableColorChange]="true"
+            [rating]="feedback.interpersonalSkillsRating"
+          ></app-box-rating>
+        </div>
+
+        <div class="container d-flex p-0">
+          <h3>(11) Overall Rating</h3>
+          <div class="px-3"></div>
+          <app-star-rating
+            [maxRating]="10"
+            [disableColorChange]="true"
+            [rating]="feedback.overallRating"
+          ></app-star-rating>
+        </div>
+
+        <div class="form-content">
+          <h3>(12) Comments</h3>
+          <p class="fs-5 m-3 w-75">{{ feedback.comments }}</p>
+        </div>
+
+        <div class="form-content full-width p-0">
+          <h3>(13) Result</h3>
+          <p class="fs-5">{{ feedback.result }}</p>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <div class="add-button">
+    <button mat-flat-button color="primary" (click)="openFeedbackForm()">
+      Add feedback
+    </button>
+  </div>
+</mat-card>

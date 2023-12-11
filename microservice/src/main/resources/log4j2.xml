@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [TMS] [%level] [%t] [%l] - %msg%n" />
+        </Console>
+        <RollingFile name="MyFile" fileName="${tms.home}/logs/tms.log"
+                     filePattern="${tms.home}/logs/tms.%d{yyyy-MM-dd}_%i.log"
+                     append="true">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%level] [%t] [%l] - %msg%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20 MB" />
+                <CronTriggeringPolicy schedule="0 0 0 * * ?"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.springframework" level="warn" additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="MyFile"/>
+        </Logger>
+        <Logger name="org.apache" level="warn" additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="MyFile"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="MyFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

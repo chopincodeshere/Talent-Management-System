@@ -1,0 +1,87 @@
+<header class="education-dialog-header">
+  <span mat-dialog-title class="education-dialog-title">Education</span>
+</header>
+<div mat-dialog-content class="education-dialog-content" class="education-form">
+  <form [formGroup]="educationForm" class="education-form">
+    <div class="education-label-container">
+      <div class="education-dialog-label">Highest Degree</div>
+      <span class="star">*</span>
+    </div>
+    <mat-form-field class="full-width" appearance="outline">
+      <input
+        type="text"
+        placeholder="Select degree"
+        matInput
+        class="education-dialog-input"
+        formControlName="highestDegree"
+        [matAutocomplete]="autoDegrees"
+      />
+      <mat-autocomplete autoActiveFirstOption #autoDegrees="matAutocomplete">
+        <mat-option
+          *ngFor="let degree of filteredDegrees | async"
+          [value]="degree"
+        >
+          {{ degree }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div class="education-label-container">
+      <div class="education-dialog-label">Specialization</div>
+    </div>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <input
+        type="text"
+        placeholder="Select specialization"
+        matInput
+        class="education-dialog-input"
+        formControlName="specialization"
+        [matAutocomplete]="autoSpecialization"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #autoSpecialization="matAutocomplete"
+      >
+        <mat-option
+          *ngFor="let specialization of filteredSpecializations | async"
+          [value]="specialization"
+        >
+          {{ specialization }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div class="education-label-container">
+      <div class="education-dialog-label">Year of Achievement</div>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        [matDatepicker]="yearOfAchievementPicker"
+        class="education-dialog-input"
+        placeholder="Education completion date"
+        formControlName="yearOfAchievement"
+        [max]="maxDate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="yearOfAchievementPicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #yearOfAchievementPicker></mat-datepicker>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions align="end" class="education-dialog-buttons">
+  <button
+    mat-button
+    (click)="closeDialog()"
+    class="education-dialog-button education-dialog-button-secondary"
+  >
+    Close
+  </button>
+  <button mat-raised-button color="primary" (click)="submitEducation()">
+    Submit
+  </button>
+</div>

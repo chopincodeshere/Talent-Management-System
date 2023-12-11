@@ -1,0 +1,61 @@
+.container-card {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 4.5rem;
+    margin-top: 0;
+    box-shadow: none;
+    width: 90%;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.route-back-card {
+    width: 90%;
+    margin: 0 4.5rem;
+    box-shadow: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.form-content {
+    display: flex;
+    align-items: center;
+}
+
+.fs-5 {
+    margin: 1rem;
+    font-size: medium;
+}
+
+h3 {
+    width: 18rem;
+    font-weight: bolder;
+}
+
+.form-content>h3 {
+    margin-top: 1rem;
+}
+
+.no-feedbacks{
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none;
+    font-size: larger;
+}
+
+.add-button {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 1rem;
+}

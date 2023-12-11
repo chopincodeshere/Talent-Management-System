@@ -1,0 +1,25 @@
+INSERT INTO job_position(job_id, job_title, hiring_managers, job_status, responsibilities)
+VALUES(1, 'Sr. Java Software Engineer(OP)',
+ARRAY['Jaydeep Chhasatia', 'Ankur Gupta', '.'], 'closed', 'Participate in the functional, architecture and technical design of our products. Write clean, high-quality, high-performance, maintainable code. Participate in the product implementation, in compliance with the development rules set forth within the organization. Participate in the evaluation and selection of third-party components and technologies. Should be an autonomous and self-organizing individual. Should work to achieve assigned targets with best quality of code with team goals in mind. Coordinate cross-functionally to ensure project meets business objectives and compliance standards. Support test and deployment of new products and features. Participate in code reviews');
+
+INSERT INTO job_position(job_id, job_title, hiring_managers, job_status, responsibilities)
+VALUES(2, 'Java Software Engineer (OP)',
+ARRAY['Jaydeep Chhasatia', 'Ankur Gupta', 'Mickeal A.'], 'open', 'Participate in the functional, architecture and technical design of our products. Write clean, high-quality, high-performance, maintainable code. Participate in the product implementation, in compliance with the development rules set forth within the organization. Participate in the evaluation and selection of third-party components and technologies. Should be an autonomous and self-organizing individual. Should work to achieve assigned targets with best quality of code with team goals in mind. Coordinate cross-functionally to ensure project meets business objectives and compliance standards. Support test and deployment of new products and features. Participate in code reviews');
+
+INSERT INTO job_position(job_id, job_title, hiring_managers, job_status, responsibilities)
+VALUES(
+  3,
+  'QA Engineer - Automation (OP)',
+  ARRAY['Jaydeep Chhasatia', 'Ashish Patel', 'Mickeal A.'],
+  'open',
+  'Rapidly gain good functional knowledge of Jira, both from user and administrator perspectives. Rapidly gain deep functional knowledge of customer''s products Participate in the quality assurance of customer''s products Design, maintain and execute test plans, cases & scenarios Document software defects using Jira as a bug tracking system & test management platform Investigate & reproduce customer problems referred by technical support Participate in building a regression test plan and execute it periodically on multiple Jira versions/platforms Perform acceptance and validation testing required when new functionality is released. Keep the regression test plan up to date Maintain and improve customer''s reference test databases/environments Continuously improve customer''s overall testing strategy, take part in daily stand-up meetings, provide feedback and consultancy. The candidate is expected to be an autonomous and self-organizing team member, capable of achieving assigned objectives.'
+);
+
+INSERT INTO job_position(job_id, job_title, hiring_managers, job_status, responsibilities)
+VALUES(4, 'Sr. QA Engineer(QT)',
+ARRAY['Jaydeep Chhasatia', 'Cristian Oancea', 'Dan Mihalache'], 'open', 'Rapidly gain good functional knowledge of Jira, both from user and administrator perspectives. Rapidly gain deep functional knowledge of customer''s products Participate in the quality assurance of customer''s products Design, maintain and execute test plans, cases & scenarios Document software defects using Jira as a bug tracking system & test management platform Investigate & reproduce customer problems referred by technical support Participate in building a regression test plan and execute it periodically on multiple Jira versions/platforms Perform acceptance and validation testing required when new functionality is released. Keep the regression test plan up to date Maintain and improve customer''s reference test databases/environments Continuously improve customer''s overall testing strategy, take part in daily stand-up meetings, provide feedback and consultancy. The candidate is expected to be an autonomous and self-organizing team member, capable of achieving assigned objectives.'
+);
+
+INSERT INTO job_position(job_id, job_title, hiring_managers, job_status, responsibilities)
+VALUES(5, 'Sr. Software Engineer - Full Stack(AP)',
+ARRAY['Jaydeep Chhasatia', 'Gianluca La Brusco'], 'closed', 'Following the methodology, participate in the functional, architecture and technical design of our products. Participate in the product implementation, in compliance with the development rules set forth within the organization. Participate in the evaluation and selection of third-party components and technologies. Should be an autonomous and self-organizing individual Should work to achieve assigned targets with the best quality of code with team goals in mind. Share knowledge and experience with other developers');

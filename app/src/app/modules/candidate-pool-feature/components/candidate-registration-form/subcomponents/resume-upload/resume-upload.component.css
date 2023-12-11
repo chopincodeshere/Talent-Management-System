@@ -1,0 +1,110 @@
+.dragDropFile {
+    /* border: 2px dotted black; */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 14rem;
+    width: 17rem;
+    border-bottom: 1px solid #b3b3b3;
+    border-radius: 9px 9px 0 0;
+    margin-left: 1.2rem;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.dragUpload {
+    background-image: url("../../../../../../../assets/Images/drag-and-drop.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 50%;
+    height: 100%;
+}
+
+.upload-file {
+    display: flex;
+    height: 100%;
+    padding: 4px;
+    opacity: 0;
+}
+
+.upload-file-button {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 17rem;
+    padding: 1.5rem;
+    border-top: 2px solid rgb(194, 194, 194);
+    background-color: #fff;
+    margin-left: 1.2rem;
+    /* border: 2px dotted #000; */
+    border-top: none;
+    border-radius: 0 0 9px 9px;
+}
+
+.upload-file-button>button {
+    width: 80%;
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.clear-image-button {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 17rem;
+    padding: 10px 0;
+}
+
+.clear-image-button>button {
+    width: 80%;
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-outline-danger {
+    width: 20%;
+}
+
+.resume-clear {
+    margin-left: 1.2rem;
+    margin-top: 1rem;
+    width: 17rem;
+}
+
+mat-card-content {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    display: flex;
+}
+
+mat-card-content>span {
+    padding: 0.75rem;
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+    white-space: nowrap;
+    width: 15rem;
+}
+
+.upload-file-button-responsive {
+    display: none;
+}
+
+@media(max-width: 710px) {
+    #resume-form-responsive {
+        display: flex;
+    }
+
+    #resume-form {
+        display: none;
+    }
+
+    .upload-file-button-responsive {
+        margin-left: 1.2rem;
+        display: flex;
+    }
+}

@@ -1,0 +1,9 @@
+<div class="dashboard">
+  <div class="card-container">
+    <app-stat-cards *ngFor="let data of cardData" [data]="data"></app-stat-cards>
+  </div>
+  
+  <div class="chart-container">
+    <canvas #pieChartCanvas id="pieChart" width="400" height="400"></canvas>
+  </div>
+</div>

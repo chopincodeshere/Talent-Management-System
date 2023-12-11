@@ -1,0 +1,275 @@
+<mat-card class="feedback-form" [formGroup]="candidateFeedbackForm">
+  <header>
+    <h1>Interview Evaluation Form</h1>
+    <span
+      >Interview evaluation forms are to be completed by the interviewer to rank
+      the candidate's overall qualifications for the position for which they
+      have applied. Under each heading, the interviewer should give the
+      candidate a numerical rating and write specific job-related comments in
+      the space provided.</span
+    >
+  </header>
+  <mat-divider></mat-divider>
+
+  <div class="form-content">
+    <h3>(1) Candidate Name</h3>
+    <mat-form-field appearance="outline">
+      <input
+        placeholder="Candidate's name"
+        formControlName="candidateName"
+        matInput
+      />
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm.get('candidateName')?.hasError('required') &&
+          candidateFeedbackForm.get('candidateName')?.touched
+        "
+      >
+        Candidate Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <h3>(2) Date of interview</h3>
+    <mat-form-field appearance="outline">
+      <input
+        placeholder="Date of Interview"
+        formControlName="dateOfInterview"
+        matInput
+        [matDatepicker]="picker"
+        [max]="maxDate"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm.get('dateOfInterview')?.hasError('required') &&
+          candidateFeedbackForm.get('dateOfInterview')?.touched
+        "
+      >
+        Date of Interview is <strong>required</strong>
+      </mat-error>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br />
+    <h3>(3) Position Applied For</h3>
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="radio-group"
+      formControlName="positionAppliedFor"
+    >
+      <mat-radio-button
+        class="radio-button"
+        color="primary"
+        *ngFor="let position of jobTitles; let i = index"
+        [value]="position"
+        [checked]="
+          i + 1 === candidateFeedbackForm.get('positionAppliedFor')!.value
+        "
+      >
+        {{ position }}
+      </mat-radio-button>
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm
+            .get('positionAppliedFor')
+            ?.hasError('required') &&
+          candidateFeedbackForm.get('positionAppliedFor')?.touched
+        "
+      >
+        Job Title is <strong>required</strong>
+      </mat-error>
+    </mat-radio-group>
+
+    <h3>(4) Interviewer Name</h3>
+    <mat-form-field appearance="outline">
+      <input
+        placeholder="Interviewer's name"
+        formControlName="interviewer"
+        matInput
+      />
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm.get('interviewer')?.hasError('required') &&
+          candidateFeedbackForm.get('interviewer')?.touched
+        "
+      >
+        Interviewer's name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="container d-flex p-0">
+      <h3>(5) Educational Background</h3>
+      <div class="px-3"></div>
+      <app-box-rating
+        [reset]="resetRatings"
+        formControlName="educationalBackgroundRating"
+      ></app-box-rating>
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm
+            .get('educationalBackgroundRating')
+            ?.hasError('required') &&
+          candidateFeedbackForm.get('educationalBackgroundRating')?.touched
+        "
+      >
+        Rating for educational background is <strong>required</strong>
+      </mat-error>
+    </div>
+
+    <div class="container d-flex p-0">
+      <h3>(6) Prior Work Experience</h3>
+      <div class="px-3"></div>
+      <app-box-rating
+        formControlName="workExperienceRating"
+        [reset]="resetRatings"
+      ></app-box-rating>
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm
+            .get('workExperienceRating')
+            ?.hasError('required') &&
+          candidateFeedbackForm.get('workExperienceRating')?.touched
+        "
+      >
+        Rating for work experience is <strong>required</strong>
+      </mat-error>
+    </div>
+
+    <div class="container d-flex p-0">
+      <h3>(7) Technical Qualifications/Knowledge/Experience</h3>
+      <div class="px-3"></div>
+      <app-box-rating
+        formControlName="technicalSkillsRating"
+        [reset]="resetRatings"
+      ></app-box-rating>
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm
+            .get('technicalSkillsRating')
+            ?.hasError('required') &&
+          candidateFeedbackForm.get('technicalSkillsRating')?.touched
+        "
+      >
+        Rating for technical skills is <strong>required</strong>
+      </mat-error>
+    </div>
+
+    <div class="container d-flex p-0">
+      <h3>(8) Verbal Communication Skill</h3>
+      <div class="px-3"></div>
+      <app-box-rating
+        formControlName="communicationSkillsRating"
+        [reset]="resetRatings"
+      ></app-box-rating>
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm
+            .get('communicationSkillsRating')
+            ?.hasError('required') &&
+          candidateFeedbackForm.get('communicationSkillsRating')?.touched
+        "
+      >
+        Rating for communication skills is <strong>required</strong>
+      </mat-error>
+    </div>
+
+    <div class="container d-flex p-0">
+      <h3>(9) Candidate Interest / Gesture</h3>
+      <div class="px-3"></div>
+      <app-box-rating
+        formControlName="candidateInterestRating"
+        [reset]="resetRatings"
+      ></app-box-rating>
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm
+            .get('candidateInterestRating')
+            ?.hasError('required') &&
+          candidateFeedbackForm.get('candidateInterestRating')?.touched
+        "
+      >
+        Rating for candidate's interest is <strong>required</strong>
+      </mat-error>
+    </div>
+
+    <div class="container d-flex p-0">
+      <h3>(10) Teambuilding/Interpersonal Skills</h3>
+      <div class="px-3"></div>
+      <app-box-rating
+        formControlName="interpersonalSkillsRating"
+        [reset]="resetRatings"
+      ></app-box-rating>
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm
+            .get('interpersonalSkillsRating')
+            ?.hasError('required') &&
+          candidateFeedbackForm.get('interpersonalSkillsRating')?.touched
+        "
+      >
+        Rating for candidate's interpersonal skills is <strong>required</strong>
+      </mat-error>
+    </div>
+
+    <div class="container d-flex p-0">
+      <h3>(11) Overall Rating</h3>
+      <div class="px-3"></div>
+      <app-star-rating formControlName="overallRating" [reset]="resetRatings"></app-star-rating>
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm.get('overallRating')?.hasError('required') &&
+          candidateFeedbackForm.get('overallRating')?.touched
+        "
+      >
+        Overall rating is <strong>required</strong>
+      </mat-error>
+    </div>
+
+    <h3>(12) Leave comments</h3>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <textarea
+        matInput
+        formControlName="comments"
+        placeholder="Ex. It makes me feel..."
+      ></textarea>
+    </mat-form-field>
+
+    <h3>(13) Result</h3>
+    <mat-form-field appearance="outline">
+      <mat-select
+        formControlName="result"
+        placeholder="Interview result"
+        name="result"
+        [(value)]="results[1]"
+      >
+        <mat-option *ngFor="let result of results" [value]="result">
+          {{ result }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          candidateFeedbackForm.get('result')?.hasError('required') &&
+          candidateFeedbackForm.get('result')?.touched
+        "
+      >
+        Result of interview is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="container d-flex justify-content-end p-0">
+      <button mat-flat-button color="primary" (click)="navigateBack()">
+        Back
+      </button>
+      <div style="width: 1rem"></div>
+      <button
+        class="btn btn-success btn-sm"
+        (click)="submitFeedback(); resetRatings = true"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</mat-card>

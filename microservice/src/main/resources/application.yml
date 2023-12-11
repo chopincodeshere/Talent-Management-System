@@ -1,0 +1,82 @@
+
+server:
+  port: 8181
+  
+spring:
+  main:
+    log-startup-info: false
+    banner-mode: off
+  
+  application:
+    name: Talent Management System
+  
+  security:
+    crypto:
+      bcrypt:
+        encoder:
+          type: org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+    user:
+      name: admin
+      password: admin
+
+#For sending e-mails
+
+#  Tecunique Configurations
+  mail:
+    protocol: smtp
+    host: mail.tecunique.com
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    username: hr@tecunique.com
+    password: June@123
+
+# Gmail Configurations
+
+#  mail:
+#    port: 587
+#    host: smtp.gmail.com
+#    username: {username}@gmail.com
+#    password: {password}
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+
+  # DB properties
+  datasource:
+    driverClassName: org.h2.Driver
+    password: ''
+    url: jdbc:h2:file:${tms.home}/data/tms-h2db
+    username: sa
+
+  h2:
+    # H2 Console
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+
+  jpa:
+    # JPA / HIBERNATE
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    show-sql: true
+    open-in-view: false
+
+tms:
+  home: ~/tms-home
+
+

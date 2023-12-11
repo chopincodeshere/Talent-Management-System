@@ -1,0 +1,26 @@
+{
+  "/candidates/*": {
+    "target": "http://localhost:8181",
+    "secure": false,
+    "changeOrigin": true,
+    "auth": "admin:admin"
+  },
+  "/jobs/*": {
+    "target": "http://localhost:8181",
+    "secure": false,
+    "changeOrigin": true,
+    "auth": "admin:admin"
+  },
+  "/email/*": {
+    "target": "http://localhost:8181",
+    "secure": false,
+    "changeOrigin": true,
+    "auth": "admin:admin"
+  },
+  "/user/*": {
+    "target": "http://localhost:8181",
+    "secure": false,
+    "changeOrigin": true,
+    "auth": "admin:admin"
+  }
+}

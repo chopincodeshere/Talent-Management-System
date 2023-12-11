@@ -1,0 +1,54 @@
+<mat-toolbar color="primary" class="tms-navbar">
+  <div class="logo">
+    <img
+      routerLink="dashboard/"
+      src="../assets/Images/TecUnique_Logo_Large - Copy (1).png"
+      height="40"
+      alt="TecUnique_Logo_Large"
+    />
+  </div>
+  <h2 type="button" routerLink="dashboard/" class="tms-heading">
+    Talent Management System
+  </h2>
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu" class="custom-menu">
+  <button mat-menu-item routerLink="dashboard" class="menu-item">
+    Dashboard
+  </button>
+
+  <button mat-menu-item [matMenuTriggerFor]="candidateMenu" class="menu-item">
+    <span class="menu-item-text">Candidate Pool</span>
+  </button>
+
+  <button mat-menu-item routerLink="/interview/jobs" class="menu-item">
+    Interviews
+  </button>
+
+  <button mat-menu-item (click)="routeReport()" class="menu-item">
+    Reports
+  </button>
+
+  <button mat-menu-item (click)="logout()" class="menu-item">Log Out</button>
+</mat-menu>
+
+<mat-menu #candidateMenu="matMenu" xPosition="before" class="custom-menu">
+  <button
+    mat-menu-item
+    routerLink="candidate-pool/add-candidate"
+    class="menu-item"
+  >
+    Add Candidate
+  </button>
+  <hr class="menu-divider" />
+  <button
+    mat-menu-item
+    routerLink="candidate-pool/all-candidates/search"
+    class="menu-item"
+  >
+    All Candidates
+  </button>
+</mat-menu>

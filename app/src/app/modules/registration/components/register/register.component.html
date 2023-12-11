@@ -1,0 +1,23 @@
+<!-- registration.component.html -->
+<div class="registration-form">
+  <h2>Registration Form</h2>
+  <form formGroupName="userForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Enter your username" formControlName="username" required>
+      <mat-error *ngIf="userForm.get('username')!.invalid && (userForm.get('username')!.dirty || userForm.get('username')!.touched)">
+        Username is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Enter your password" formControlName="password" required>
+      <mat-error *ngIf="userForm.get('password')!.invalid && (userForm.get('password')!.dirty || userForm.get('password')!.touched)">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="register()">Register</button>
+  </form>
+</div>

@@ -1,0 +1,215 @@
+.form-container {
+    display: flex;
+}
+
+.form {
+    border-radius: 8px;
+    margin: 0 1.2rem;
+    box-shadow: none;
+    width: 100%;
+}
+
+.form-grid {
+    display: grid;
+    padding: 1rem;
+    width: 98%;
+    flex-direction: column;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.form-field {
+    grid-column: span 1;
+}
+
+.input-field {
+    width: 90%;
+}
+
+.address {
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr;
+    align-items: center;
+    padding: 0 1rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.currentAddress {
+    display: flex;
+    flex-direction: column;
+    margin-right: 0;
+    margin-bottom: 20px;
+}
+
+.permanentAddress {
+    display: flex;
+    flex-direction: column;
+    margin-right: 0;
+    margin-left: 1rem;
+    margin-bottom: 20px;
+}
+
+.modals {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0.8rem 1rem;
+}
+
+.education-modal,
+.link-modal,
+.employment-modal {
+    width: 35%;
+}
+
+.education-modal>span {
+    margin-left: 4.1rem;
+}
+
+.employment-modal>button {
+    margin-left: 3.8rem;
+}
+
+.link-modal>button {
+    margin-left: 7.1rem;
+}
+
+.input-field-30 {
+    width: 70%;
+    margin-top: 0.75rem;
+    align-items: center;
+}
+
+.input-last {
+    margin: 0.5rem 1rem;
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mat-divider {
+    display: flex;
+    justify-content: center;
+}
+
+.mat-form-field {
+    width: 15rem;
+}
+
+.referral-accordian {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notes {
+    margin: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notes>mat-form-field {
+    margin: 2rem 1rem;
+}
+
+.button-section {
+    margin: 0 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttons {
+    display: flex;
+    width: 10rem;
+    justify-content: space-between;
+}
+
+.star {
+    margin: 5px;
+    font-size: 25px;
+    color: red;
+}
+
+.required-fields {
+    font-size: 16px;
+    color: red;
+}
+
+@media screen and (min-width: 784px) {
+    .education-modal,
+    .link-modal,
+    .employment-modal {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 784px) {
+    .form-container {
+        width: 100%;
+        margin-right: 2rem;
+    }
+
+    .mat-form-field {
+        max-width: 100%;
+    }
+
+    .form {
+        max-width: 55%;
+    }
+
+    .form>form {
+        max-width: 100%;
+    }
+
+    .form-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .address {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        padding: 0 1rem;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .mat-divider {
+        display: none;
+    }
+
+    .education-modal,
+    .link-modal,
+    .employment-modal {
+        width: 100%;
+    }
+
+    .input-last {
+        margin: 1rem 1rem;
+        width: 80%;
+    }
+
+    .referral-accordian {
+        width: 80%;
+        gap: 1rem;
+    }
+    
+}
+
+
+@media(max-width: 710px) {
+    .form-container {
+        flex-direction: column;
+    }
+
+    .form {
+        max-width: 93%;
+        margin-top: 1rem;
+    }
+}

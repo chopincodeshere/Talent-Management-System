@@ -1,0 +1,20 @@
+<div class="star-rating">
+  <mat-icon
+    *ngFor="let rating of ratings"
+    class="star-icon"
+    [ngClass]="{
+        'selected': rating <= currentRating!,
+        'disable-color-change': disableColorChange,
+      }"
+    (click)="!disableColorChange && setRating(rating)"
+    (mouseenter)="!disableColorChange && setHoverRating(rating)"
+    (mouseleave)="!disableColorChange && clearHoverRating()"
+    style="cursor: pointer"
+  >
+    {{
+      rating <= currentRating! || rating <= hoverRating!
+        ? "star"
+        : "star_border"
+    }}
+  </mat-icon>
+</div>

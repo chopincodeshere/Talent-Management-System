@@ -1,0 +1,116 @@
+.container {
+    background-color: #fff;
+    width: 90%;
+    border-radius: 9px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-grid {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.work-mode-radio-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.radio-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-right: 14rem;
+}
+
+.field-label {
+    margin-bottom: 10px;
+}
+
+.button-section {
+    margin: 0 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttons {
+    display: flex;
+    width: 10rem;
+    justify-content: space-between;
+}
+
+.example-label-container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 10px 0;
+}
+
+.example-result-card {
+    border: none;
+    box-shadow: none;
+}
+
+.example-value-label {
+    font-weight: 600;
+    margin-left: 8rem;
+    color: rgb(17, 116, 17);
+}
+
+.example-result-card {
+    font-weight: 600;
+}
+
+.example-margin {
+    margin: 8px;
+}
+
+.mat-mdc-slider {
+    max-width: 300px;
+    width: 100%;
+}
+
+.mat-mdc-card+.mat-mdc-card {
+    margin-top: 8px;
+}
+
+.example-result-card h2 {
+    margin: 0 8px;
+}
+
+
+
+.required-fields {
+    font-size: 16px;
+    color: red;
+}
+
+.star {
+    margin: 5px;
+    font-size: 25px;
+    color: red;
+}
+
+.chip-list {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: none;
+}
+
+@media screen and (max-width: 780px) {
+    .grid-section {
+        display: flex;
+        flex-direction: column;
+    }
+  }

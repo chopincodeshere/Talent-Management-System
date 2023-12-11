@@ -1,0 +1,208 @@
+<mat-progress-bar
+  *ngIf="isLoading"
+  class="progress-bar"
+  style="position: absolute; top: 4.6rem"
+  mode="indeterminate"
+></mat-progress-bar>
+
+<div class="interview-container">
+  <div class="container">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openModal()"
+      class="add_job_button"
+    >
+      Add Job Position
+    </button>
+  </div>
+
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    multiTemplateDataRows
+    (matSortChange)="announceSortChange($event)"
+    matSort
+    class="mat-elevation-z8 interview-table"
+  >
+    <ng-container matColumnDef="jobTitle">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Title</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="job-description">
+          <a
+            style="text-decoration: none; color: #4683d8; cursor: pointer"
+            (click)="fetchCandidates(element.id)"
+            >{{ element.jobTitle }}</a
+          >
+          <div class="jd-icon">
+            <mat-icon
+              type="button"
+              color="primary"
+              (click)="showJobDescription(element)"
+              >description</mat-icon
+            >
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Displaying Hiring Managers as an HTML List -->
+    <ng-container matColumnDef="hiringManagers">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Hiring Managers</th>
+      <td mat-cell *matCellDef="let element" class="hiringManagersTD">
+        <ul
+          class="hiringManagersUL"
+          *ngFor="let manager of element.hiringManagers"
+        >
+          <li class="hiringManagersLI">
+            <mat-icon style="margin: 0 8px; font-size: 20px"
+              >account_circle</mat-icon
+            >
+            {{ manager }}
+          </li>
+        </ul>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="candidateCount">
+      <th mat-header-cell *matHeaderCellDef>No. of Applicants</th>
+      <td mat-cell *matCellDef="let element" style="padding-left: 2.5rem">
+        <a
+          type="button"
+          style="
+            text-decoration: none;
+            color: #4683d8;
+            background-color: #4683d8;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: larger;
+            padding: 3px 5px;
+          "
+          (click)="fetchCandidates(element.id)"
+          class="border border-primary rounded"
+          >{{ element.jobCount }}</a
+        >
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="jobStatus">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Status</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container
+          *ngIf="
+            element.jobStatus === 'closed';
+            then closedStatus;
+            else element.jobStatus === 'On Hold' ? onHoldStatus : openStatus
+          "
+        ></ng-container>
+        <ng-template #closedStatus
+          ><mat-chip
+            class="status-chip status-closed"
+            style="background-color: #f03e3e; font-weight: bold"
+            ><p class="job-status-text">{{ element.jobStatus }}</p></mat-chip
+          ></ng-template
+        >
+        <ng-template #openStatus
+          ><mat-chip
+            class="status-chip status-open"
+            style="background-color: #47b96c; font-weight: bold"
+            ><p class="job-status-text">{{ element.jobStatus }}</p></mat-chip
+          ></ng-template
+        >
+        <ng-template #onHoldStatus
+          ><mat-chip
+            class="status-chip status-onhold"
+            style="background-color: #ff9f1a; font-weight: bold"
+            ><p class="job-status-text">{{ element.jobStatus }}</p></mat-chip
+          ></ng-template
+        >
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Options">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="editJob(element.id)">
+          <mat-icon color="primary">edit</mat-icon>
+        </button>
+
+        <button
+          mat-icon-button
+          (click)="openDeleteConfirmationDialog(element.id)"
+        >
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="expand">
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          aria-label="expand row"
+          (click)="
+            expandedElement = expandedElement === element ? null : element;
+            $event.stopPropagation()
+          "
+        >
+          <mat-icon *ngIf="expandedElement !== element"
+            >keyboard_arrow_down</mat-icon
+          >
+          <mat-icon *ngIf="expandedElement === element"
+            >keyboard_arrow_up</mat-icon
+          >
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="columnsToDisplayWithExpand.length"
+      >
+        <div
+          class="example-element-detail"
+          [@detailExpand]="
+            element == expandedElement ? 'expanded' : 'collapsed'
+          "
+        >
+          {{ element.requirements }}
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: columnsToDisplayWithExpand"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="example-detail-row"
+      (click)="expandedElement = expandedElement === row ? null : row"
+    ></tr>
+  </table>
+  <mat-card
+    class="no-data-found"
+    *ngIf="dataSource?.data?.length === 0 || dataSource?.data === null"
+  >
+    <mat-card-content class="no-data-content">No data found</mat-card-content>
+  </mat-card>
+  <mat-paginator
+    [length]="jobsCount"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [showFirstLastButtons]="true"
+    [pageSizeOptions]="[3, 5, 10, 25, 100]"
+    (page)="onPageChange($event)"
+    class="paginator"
+  >
+  </mat-paginator>
+</div>

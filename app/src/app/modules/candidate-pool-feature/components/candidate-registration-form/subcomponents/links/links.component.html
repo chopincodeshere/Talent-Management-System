@@ -1,0 +1,35 @@
+<header class="links-dialog-header">
+  <span mat-dialog-title>Links</span>
+</header>
+<div mat-dialog-content class="links-dialog-content">
+  <form [formGroup]="linksForm" class="links-form">
+    <mat-form-field appearance="outline" class="links-form-field">
+      <input
+        matInput
+        placeholder="Enter a link"
+        class="links-dialog-input"
+        [formControl]="newLink"
+        (keyup.enter)="addLink()"
+      />
+      <button mat-icon-button matSuffix color="primary" (click)="addLink()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+
+  <h3>Links added</h3>
+  <mat-list *ngIf="linksForm.value.links.length > 0" class="links-dialog-list">
+    <mat-list-item *ngFor="let link of linksForm.value.links; let i = index" class="links-dialog-list-item">
+      <span matLine class="links-text mat-line">{{ link }}</span>
+      <button mat-icon-button matListIcon color="warn" (click)="removeLink(i)" class="links-dialog-remove-button">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>
+<div mat-dialog-actions align="end" class="links-dialog-buttons">
+  <button mat-button (click)="closeDialog()" class="links-dialog-button links-dialog-button-secondary">Close</button>
+  <button mat-raised-button color="primary" (click)="submitLinks()">
+    Submit
+  </button>
+</div>

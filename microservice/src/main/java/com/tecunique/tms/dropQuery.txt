@@ -1,0 +1,8 @@
+DROP TABLE EMPLOYMENT CASCADE CONSTRAINTS;
+DROP TABLE CANDIDATES  CASCADE CONSTRAINTS;
+DROP TABLE CANDIDATE_FEEDBACK CASCADE CONSTRAINTS;
+DROP TABLE JOB_POSITION  CASCADE CONSTRAINTS;
+
+drop table country cascade constraints;
+drop table state cascade constraints;
+drop table city cascade constraints;

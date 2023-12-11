@@ -1,0 +1,31 @@
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 3rem;
+    border-right: 2px solid rgb(119, 116, 116);
+}
+
+.box:hover {
+    cursor: pointer;
+    background-color: #3f51b5;
+    color: aliceblue;
+}
+
+.box-rating .box.selected {
+    background-color: #3f51b5;
+    color: aliceblue;
+}
+
+.box-rating {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid rgb(119, 116, 116);
+    border-radius: 5px;
+}
+
+.disable-color-change {
+    cursor: auto;
+    background-color: none;
+}

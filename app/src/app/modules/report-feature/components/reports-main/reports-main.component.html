@@ -1,0 +1,160 @@
+<mat-card class="reports-card">
+  <header class="reports-dialog-title">
+    <span mat-dialog-title>Reports</span>
+  </header>
+  <mat-card-content class="reports">
+    <mat-list class="report-list">
+      <mat-list-item class="excel-import">
+        <div class="report-item">
+          <div class="list-title">Upload Excel file</div>
+          <div class="upload-excel file-upload">
+            <div id="file-name" class="file-name"></div>
+
+            <label class="custom-file-upload">
+              <input
+                type="file"
+                id="file-input"
+                (change)="onFileSelected($event)"
+                accept=".xlsx, .xls"
+              />
+              <span>Select File</span>
+            </label>
+
+            <button
+              mat-flat-button
+              class="upload-button"
+              color="primary"
+              (click)="uploadFile()"
+              [disabled]="uploadingFile || !isFileSelected"
+            >
+              <mat-icon *ngIf="!uploadingFile">cloud_upload</mat-icon>
+              <div class="upload-content">
+                <mat-progress-spinner
+                  *ngIf="uploadingFile"
+                  class="upload-spinner"
+                  mode="indeterminate"
+                  diameter="20"
+                ></mat-progress-spinner>
+
+                <span class="upload-label">{{
+                  uploadingFile ? "Uploading..." : "Upload data"
+                }}</span>
+              </div>
+            </button>
+
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="exportSampleExcelFile()"
+              [disabled]="downloadingFile.sampleExcel"
+            >
+              <mat-icon *ngIf="!downloadingFile.sampleExcel">download</mat-icon>
+              <div class="upload-content">
+                <mat-progress-spinner
+                  *ngIf="downloadingFile.sampleExcel"
+                  class="upload-spinner"
+                  mode="indeterminate"
+                  diameter="20"
+                ></mat-progress-spinner>
+
+                <span class="upload-label">{{
+                  downloadingFile.sampleExcel
+                    ? "Downloading..."
+                    : "Download Sample Excel"
+                }}</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <div class="report-item">
+          <div class="list-title">Generate all candidates report</div>
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="exportAllCandidatesData()"
+            [disabled]="downloadingFile.allCandidate"
+          >
+            <mat-icon *ngIf="!downloadingFile.allCandidate">download</mat-icon>
+            <div class="upload-content">
+              <mat-progress-spinner
+                *ngIf="downloadingFile.allCandidate"
+                class="upload-spinner"
+                mode="indeterminate"
+                diameter="20"
+              ></mat-progress-spinner>
+
+              <span class="upload-label">{{
+                downloadingFile.allCandidate
+                  ? "Downloading..."
+                  : "Download Excel"
+              }}</span>
+            </div>
+          </button>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <div class="report-item">
+          <div class="list-title">Generate job positions' report</div>
+
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="exportJobPositionsData()"
+            [disabled]="downloadingFile.jobPositions"
+          >
+            <mat-icon *ngIf="!downloadingFile.jobPositions">download</mat-icon>
+            <div class="upload-content">
+              <mat-progress-spinner
+                *ngIf="downloadingFile.jobPositions"
+                class="upload-spinner"
+                mode="indeterminate"
+                diameter="20"
+              ></mat-progress-spinner>
+
+              <span class="upload-label">{{
+                downloadingFile.jobPositions
+                  ? "Downloading..."
+                  : "Download Excel"
+              }}</span>
+            </div>
+          </button>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <div class="report-item">
+          <div class="list-title">Generate interviewers' feedbacks' report</div>
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="exportCandidateFeedbackData()"
+            [disabled]="downloadingFile.candidateFeedback"
+          >
+            <mat-icon *ngIf="!downloadingFile.candidateFeedback"
+              >download</mat-icon
+            >
+            <div class="upload-content">
+              <mat-progress-spinner
+                *ngIf="downloadingFile.candidateFeedback"
+                class="upload-spinner"
+                mode="indeterminate"
+                diameter="20"
+              ></mat-progress-spinner>
+
+              <span class="upload-label">{{
+                downloadingFile.candidateFeedback
+                  ? "Downloading..."
+                  : "Download Excel"
+              }}</span>
+            </div>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

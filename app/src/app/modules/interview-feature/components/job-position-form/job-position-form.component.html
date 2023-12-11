@@ -1,0 +1,153 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+<header>
+  <div></div>
+  <h2>
+    <mat-icon>{{ data ? "edit" : "" }}</mat-icon
+    >{{ data ? "Edit Job Position" : "Add Job Position" }}
+  </h2>
+
+  <mat-icon type="button" (click)="closeModal()" class="close-icon"
+    >close</mat-icon
+  >
+</header>
+
+<mat-divider></mat-divider>
+
+<form class="job-position-form" [formGroup]="jobPositionForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Job Title</mat-label>
+    <input
+      matInput
+      placeholder="Ex. Senior QA Engineer"
+      formControlName="jobTitle"
+      name="jobTitle"
+    />
+    <mat-error
+      *ngIf="
+        jobPositionForm.get('jobTitle')?.hasError('required') &&
+        jobPositionForm.get('jobTitle')?.touched
+      "
+    >
+      Job Title is required.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-chip-list" appearance="outline">
+    <mat-label>Hiring Managers</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Enter Hiring Managers">
+      <mat-chip-row
+        *ngFor="let manager of jobPositionForm.value.hiringManagers"
+        (removed)="remove(manager)"
+        [editable]="true"
+        (edited)="edit(manager, $event)"
+        [aria-description]="'press enter to edit ' + manager"
+      >
+        {{ manager }}
+        <button matChipRemove [attr.aria-label]="'remove ' + manager">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      <input
+        placeholder="New manager..."
+        [matChipInputFor]="chipGrid"
+        formArrayName="hiringManagers"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-grid>
+    <mat-error
+      *ngIf="
+        jobPositionForm.get('hiringManager')?.hasError('required') &&
+        jobPositionForm.get('hiringManager')?.touched
+      "
+    >
+      Enter at least one hiring manager.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Requirements</mat-label>
+    <textarea
+      matInput
+      placeholder="Ex. Job Requirements"
+      formControlName="requirements"
+    ></textarea>
+    <mat-error
+      *ngIf="
+        jobPositionForm.get('requirements')?.hasError('required') &&
+        jobPositionForm.get('requirements')?.touched
+      "
+    >
+      Job Requirements is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-radio-group
+    aria-label="Select an option"
+    style="display: flex; align-items: center"
+    formControlName="jobStatus"
+    class="jobStatus"
+  >
+    <h3
+      style="
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin: 0 2rem 0 0;
+      "
+    >
+      Job Status
+    </h3>
+    <div class="jobStatusOptions">
+      <mat-radio-button color="primary" value="open">Open</mat-radio-button>
+      <mat-radio-button color="primary" value="closed">Close</mat-radio-button>
+      <mat-radio-button color="primary" value="On Hold"
+        >On Hold</mat-radio-button
+      >
+    </div>
+    <mat-error
+      *ngIf="
+        jobPositionForm.get('jobStatus')?.hasError('required') &&
+        jobPositionForm.get('jobStatus')?.touched
+      "
+    >
+      Job Status is required
+    </mat-error>
+  </mat-radio-group>
+
+  <div>
+    <h3>Job Description</h3>
+    <div class="select-file">
+      <label class="custom-file-upload">
+        <input
+          type="file"
+          accept=".jpg, .jpeg, .docx, .pdf"
+          (change)="onFileSelected($event)"
+        />
+        <span>Select file</span>
+      </label>
+      <div id="file-name" class="file-name"></div>
+    </div>
+    <mat-error
+      *ngIf="
+        jobPositionForm.get('jobDescription')?.hasError('required') &&
+        jobPositionForm.get('jobDescription')?.touched
+      "
+    >
+      Job Description is required
+    </mat-error>
+  </div>
+
+  <div class="form-actions">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="submitForm()"
+      [disabled]="jobPositionForm.invalid"
+    >
+      {{ data ? "Update" : "Add" }}
+    </button>
+  </div>
+</form>

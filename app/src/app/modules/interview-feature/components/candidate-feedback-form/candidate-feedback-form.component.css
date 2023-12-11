@@ -1,0 +1,38 @@
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 1.8rem 10rem;
+    padding: 0 2rem;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+header {
+    width: 100%;
+    padding: 2rem 0;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+}
+
+.radio-button {
+    margin: 5px;
+}
+
+
+@media(max-width: 1000px) {
+    .feedback-form {
+        margin-left: 10%;
+    }
+}
+  

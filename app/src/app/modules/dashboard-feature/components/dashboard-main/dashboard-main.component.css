@@ -1,0 +1,23 @@
+.dashboard {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 70%;
+}
+
+@media(max-width: 1444px) {
+    .dashboard {
+        height: 575px;
+    }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 60%;
+    }
+}

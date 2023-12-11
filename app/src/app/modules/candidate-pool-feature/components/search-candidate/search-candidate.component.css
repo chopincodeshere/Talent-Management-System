@@ -1,0 +1,143 @@
+form {
+    margin: 0 0 1.5rem 1.5rem;
+    width: 90rem;
+    margin-left: 10rem;
+
+}
+
+.container {
+    margin: 2rem;
+}
+
+.btn {
+    width: 8rem;
+    height: 3rem;
+    margin: 0 1rem;
+}
+
+div.button {
+    border-radius: none;
+    margin: 0;
+    height: 2.5rem;
+    width: 6.4rem;
+}
+
+div.button:hover {
+    background-color: #FFC857;
+    /* color: #fff; */
+}
+
+.referral_name {
+    font-weight: bolder;
+}
+
+table {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    margin: 1.5rem 0 0 1.5rem;
+}
+
+.delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 5.5rem;
+}
+
+mat-paginator {
+    margin: 1.5rem 1.5rem;
+    width: 100%;
+    margin-top: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.candidate-cell {
+    display: flex;
+    height: 100%;
+    margin-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    align-items: center;
+}
+
+.id-container {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+}
+
+.resume-icon {
+    margin-left: 0.75rem;
+    font-weight: lighter;
+}
+
+.resume-icon:hover {
+    cursor: pointer;
+}
+
+tr.detail-row {
+    height: 0;
+}
+
+tr.collapsed-rows:hover {
+    background-color: #f0f0f0;
+}
+
+.example-element-description {
+    padding: 16px;
+}
+
+.example-element-description-attribution {
+    opacity: 0.5;
+}
+
+.scrollable {
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+h3 {
+    margin-top: 1rem;
+}
+
+.card {
+    top: 10.5rem;
+    right: 16.3rem;
+    width: 25rem;
+    position: absolute;
+    z-index: 1;
+}
+
+.card-header {
+    height: 3rem;
+}
+
+.filter-button-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.example-chip-list {
+    width: 100%;
+}
+
+.all-filter {
+    margin-left: 26.5rem;
+}
+
+div.button:hover {
+    cursor: pointer;
+}
+
+.no-data-found {
+    box-shadow: none;
+    margin: 0 1.5rem;
+    padding: 0 35rem;
+    width: 100%;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 0;
+}
